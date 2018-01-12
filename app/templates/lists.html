@@ -1,0 +1,41 @@
+<div class="todo-container my-4 p-4">
+    <h2 class="text-light shadow mb-3">List Manager</h2>
+    <empty-content ng-if="message" message="message"></empty-content>
+    <div class="filters" ng-show="lists.length">
+        <h6 class="text-light shadow mr-3 mb-0 mt-2 float-left">Sort By</h6>
+        <div class="btn-group">
+            <button class="btn btn-sm btn-default" ng-click="order = 'title'">By Name</button>
+            <div class="input-group">
+                <span class="input-group-addon">Limit to:</span>
+                <input type="number" class="form-control" min="1" ng-model="limit">
+            </div>
+            <button class="btn btn-sm btn-default" ng-click="showEdited = !showEdited">By Date</button>
+            <div ng-show="showEdited" class="input-group ml-2">
+                <span class="input-group-addon">Show Last Edited for:</span>
+                <select ng-model="dur" class="form-control">
+                    <option value="">all</option>
+                    <option value="1">5 min</option>
+                    <option value="2">week</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="card-deck my-3">
+        <card-panel ng-repeat="list in lists | orderBy: order | limitTo: limit | duration:dur">
+            <div class="card-heading p-3">
+                <div>
+                    <h4>
+                    <a ng-href="/#!/list/{{list._id}}" class="card-title d-block text-dark text-capitalize mb-2">{{list.title}}</a>
+                </h4>
+                    <h6 class="card-subtitle text-muted font-italic">last edited: {{list.updated | date}}</h6>
+                </div>
+                <div>
+                    <a ng-href="/#!/list/{{list._id}}" class="btn btn-sm btn-outline-primary float-right">Edit</a>
+                </div>
+            </div>
+            <div class="card-body pt-2">
+                <div class="py-2 font-italic list-item" ng-repeat="item in list.items">{{item.name}}</div>
+            </div>
+        </card-panel>
+    </div>
+</div>

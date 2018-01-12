@@ -1,0 +1,25 @@
+<div class="todo-container my-4 p-4">
+    <h2 class="text-light shadow mb-3">New Category</h2>
+    <card-panel>
+        <div class="card-body">
+            <form name="categoryForm" novalidate>
+                <div class="form-group">
+                    <label for="title">Category Title</label>
+                    <input type="text" class="form-control" ng-class="{'is-invalid': (categoryForm.title.$invalid && categoryForm.title.$touched) || (categoryForm.$submitted && categoryForm.$invalid)}" id="title" name="title" ng-model="categoryCopy.title" placeholder="Enter title" required minlength="3">
+                    <div class="invalid-feedback">
+                        <div ng-messages="categoryForm.title.$error" ng-messages-multiple>
+                            <div ng-message="required">Enter a title</div>
+                            <div ng-messages-include="templates/error-messages.html"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="description">Category Description</label>
+                    <textarea name="description" class="form-control" id="description" rows="3" ng-model="categoryCopy.description" placeholder="Description"></textarea>
+                </div>
+                <button type="submit" class="btn btn-outline-primary mr-1" ng-click="createCategory(categoryForm)">Save</button>
+                <button type="reset" class="btn btn-outline-secondary" ng-click="resetForm(categoryForm)">Cancel</button>
+            </form>
+        </div>
+    </card-panel>
+</div>

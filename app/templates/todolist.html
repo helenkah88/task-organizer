@@ -1,0 +1,27 @@
+<div class="todo-container my-4 p-4">
+    <card-panel>
+        <div class="card-heading p-3">
+            <div>
+                <h4 class="card-title text-capitalize">{{list.title}}</h4>
+            </div>
+            <div>
+                <button class="btn btn-sm btn-outline-danger float-right" ng-click="removeList()">Delete List</button>
+                <a ng-href="" my-tooltip="item" class="mr-2 float-right">Edit</a>
+            </div>
+        </div>
+        <div class="card-body pt-0">
+            <div ng-repeat="item in list.items">
+                <todo-item item="item" notify="removeItem(item)"></todo-item>
+            </div>
+            <div ng-show="showMore" class="d-flex mb-2">
+                <input type="text" class="form-control form-control-sm col-sm-7" ng-model="task.name">
+                <button class="btn btn-sm btn-outline-primary ml-2" ng-click="addNew()">Add</button>
+            </div>
+            <button class="btn btn-sm btn-outline-primary" ng-click="addMore()">Add More</button>
+            <div class="mt-4">
+                <button class="btn btn-sm btn-outline-secondary" ng-click="archieve()">Save to archieve</button>
+                <button class="btn btn-sm btn-outline-primary float-right" ng-click="saveChanges()">Save Changes</button>
+            </div>
+        </div>
+    </card-panel>
+</div>

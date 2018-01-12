@@ -1,0 +1,42 @@
+<div class="todo-container my-4 p-4">
+    <h2 class="text-light shadow mb-3">New TODO List</h2>
+    <card-panel>
+        <div class="card-body">
+            <form name="listForm" novalidate>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="title" name="title" ng-model="listCopy.title" placeholder="Enter title">
+                </div>
+                <div>
+                    <button class="btn btn-sm btn-outline-secondary mb-3" ng-click="showNew()">Choose category</button>
+                </div>
+                <div ng-show="categoryOpts">
+                    <div class="form-group">
+                        <label>Create new or pick from a list:</label>
+                        <div class="d-flex">
+                            <select class="form-control form-control-sm col-sm-6 float-left" ng-options="category._id as category.title for category in categories track by category._id" ng-model="listCopy.categoryId">
+                                <option value="">Choose category</option>
+                            </select>
+                            <div ng-click="showNewCategory()" class="ml-2 d-flex add-mode"><i class="material-icons mr-1">add_box</i><span>create new</span></div>
+                        </div>
+                        <div ng-show="newCategory" class="mt-1">category selected: <span class="font-italic">{{category.title}}</span></div>
+                        <div ng-show="categoryShowState" class="mt-2">
+                            <input type="text" class="form-control form-control-sm col-sm-8 float-left" id="title" name="title" ng-model="category.title" placeholder="Enter title">
+                            <button type="submit" class="btn btn-outline-primary btn-sm ml-2" ng-click="createCategory()">Add</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="py-2 list-item" ng-repeat="item in listCopy.items">{{item.name}}</div>
+                <div class="form-group">
+                    <div ng-hide="listShowState" class="d-flex add-mode" ng-click="showNewItem()"><i class="material-icons mr-1">add_box</i><span>add item</span>
+                    </div>
+                    <div ng-show="listShowState">
+                        <input type="text" ng-model="items.item" class="form-control form-control-sm col-sm-8 float-left" placeholder="Enter item">
+                        <div class="btn btn-outline-primary btn-sm ml-2" ng-click="addItem()">Add</div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-outline-primary btn-sm" ng-click="createList()">Save</button>
+                <button ng-show="listShowState" class="btn btn-outline-secondary btn-sm" ng-click="resetList()">Cancel</button>
+            </form>
+        </div>
+    </card-panel>
+</div>
