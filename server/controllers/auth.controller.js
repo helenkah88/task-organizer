@@ -7,11 +7,11 @@ module.exports = function(req, res) {
         res.json('Missing credentials');
     } else {
         users.findOne({ username: req.body.username }).then(function(user) {
-            var expTime = +config.expiration_date;
+        var date = new Date().setTime(new Date().getTime() + (60 * 60 * 1000))/1000;
             if (user) {
                 user.comparePassword(req.body.password, function(err, result) {
                     if (result && !err) {
-                        var token = jwt.encode({exp: Math.round(expTime), username: user.username}, config.secretKey);
+                        var token = jwt.encode({exp: Math.round(date), username: user.username}, config.secretKey);
                         res.json({
                             user: {
                                 username: user.username,
@@ -26,7 +26,7 @@ module.exports = function(req, res) {
 
             } else {
                 users.create(req.body).then(function(user) {
-                    var token = jwt.encode({exp: Math.round(expTime), username: user.username}, config.secretKey);
+                    var token = jwt.encode({exp: Math.round(date), username: user.username}, config.secretKey);
                     res.json({
                         user: {
                             username: user.username,

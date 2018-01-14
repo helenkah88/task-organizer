@@ -3,25 +3,25 @@
     <empty-content ng-if="message" message="message"></empty-content>
     <div class="filters" ng-show="lists.length">
         <h6 class="text-light shadow mr-3 mb-0 mt-2 float-left">Sort By</h6>
-        <div class="btn-group">
+        <div class="btn-group mt-1 mt-md-0">
             <button class="btn btn-sm btn-default" ng-click="order = 'title'">By Name</button>
-            <div class="input-group">
+            <div class="input-group limit">
                 <span class="input-group-addon">Limit to:</span>
                 <input type="number" class="form-control" min="1" ng-model="limit">
             </div>
             <button class="btn btn-sm btn-default" ng-click="showEdited = !showEdited">By Date</button>
-            <div ng-show="showEdited" class="input-group ml-2">
+            <div ng-show="showEdited" class="input-group ml-0 mt-1 ml-md-2 mt-md-0">
                 <span class="input-group-addon">Show Last Edited for:</span>
-                <select ng-model="dur" class="form-control">
+                <select ng-model="durationTime" class="form-control">
                     <option value="">all</option>
-                    <option value="1">5 min</option>
-                    <option value="2">week</option>
+                    <option value="1">1 week</option>
+                    <option value="2">1 month</option>
                 </select>
             </div>
         </div>
     </div>
     <div class="card-deck my-3">
-        <card-panel ng-repeat="list in lists | orderBy: order | limitTo: limit | duration:dur">
+        <card-panel ng-repeat="list in lists | orderBy: order | limitTo: limit | duration:durationTime">
             <div class="card-heading p-3">
                 <div>
                     <h4>

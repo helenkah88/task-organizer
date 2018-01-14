@@ -93,15 +93,6 @@ ul.nav a:hover {
     color: green;
     opacity: 1;
 }
-/* 
-.navbar-animate.ng-hide {
-    height: 0;
-    opacity: 0;
-}
-
-.navbar-animate.ng-hide-add {
-    height: 100%;
-} */
 
 .greeting {
     position: absolute;
@@ -187,6 +178,12 @@ ul.nav a:hover {
     font-variant: small-caps;
 }
 
+.filters .input-group.limit {
+    max-width: 140px;
+}
+.filters .input-group {
+    max-width: 400px;
+}
 .filters .input-group-addon {
     font-size: .875rem;
     border-radius: 0;
@@ -280,6 +277,12 @@ ul.nav a:hover {
     }
 }
 
+@media screen and (max-width: 767px) {
+    .filters .btn-group {
+        flex-wrap: wrap;
+    }
+}
+
 @media screen and (max-width: 991px) {
     .nav-toggle {
         display: none;
@@ -287,8 +290,6 @@ ul.nav a:hover {
     ul.nav {
         flex-direction: row;
         justify-content: space-between;
-
-        transition: all .2s ease-in-out;
     }
     nav {
         position: static;
@@ -306,6 +307,8 @@ ul.nav a:hover {
     }
     .nav-toggle {
         display: block;
+
+        transition: all .2s ease-in-out;
     }
     ul.nav {
         display: flex;

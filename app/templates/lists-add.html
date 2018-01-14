@@ -4,7 +4,7 @@
         <div class="card-body">
             <form name="listForm" novalidate>
                 <div class="form-group">
-                    <input type="text" class="form-control" id="title" name="title" ng-model="listCopy.title" placeholder="Enter title">
+                    <input type="text" class="form-control" name="title" ng-model="listCopy.title" placeholder="Enter title">
                 </div>
                 <div>
                     <button class="btn btn-sm btn-outline-secondary mb-3" ng-click="showNew()">Choose category</button>
@@ -20,7 +20,7 @@
                         </div>
                         <div ng-show="newCategory" class="mt-1">category selected: <span class="font-italic">{{category.title}}</span></div>
                         <div ng-show="categoryShowState" class="mt-2">
-                            <input type="text" class="form-control form-control-sm col-sm-8 float-left" id="title" name="title" ng-model="category.title" placeholder="Enter title">
+                            <input type="text" class="form-control form-control-sm col-sm-8 float-left" name="title" ng-model="category.title" placeholder="Enter title">
                             <button type="submit" class="btn btn-outline-primary btn-sm ml-2" ng-click="createCategory()">Add</button>
                         </div>
                     </div>

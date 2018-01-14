@@ -1,5 +1,5 @@
 <div class="todo-container my-4 p-4">
-    <div ng-show="currentUser.goal">
+    <div ng-show="currentUser.getToken() && currentUser.goal">
         <h4 id="goal" class="text-light font-weight-light pl-4" my-tooltip="goal" ng-model="currentUser.goal">Your goal for today: 
     <span class="font-italic pl-2" contenteditable ng-click="show = true" style="font-size: 24px;">{{currentUser.goal}}</span>
     <span ng-show="show" class="ml-3">

@@ -2,7 +2,7 @@
 (function() {
 
     angular.module('todoApp')
-        .controller('ListsCtrl', ['$scope', 'listService', 'categoryService', 'todoListService', '$routeParams', '$location', 'currentUserService', 'toastr', function($scope, listService, categoryService, todoListService, $routeParams, $location, currentUserService, toastr) {
+        .controller('ListsCtrl', ['$scope', 'listService', 'categoryService', 'todoListService', '$routeParams', '$location', 'currentUserService', 'toastr', '$injector', function($scope, listService, categoryService, todoListService, $routeParams, $location, currentUserService, toastr, $injector) {
 
             $scope.list = {};
             $scope.list.items = [];
@@ -34,9 +34,10 @@
             listService.getArchieve(userId).$promise
                 .then(function(data) {
                     if (data.length) {
+                        $scope.messageArchieve = '';
                         $scope.archieve = data;
                     } else {
-                        $scope.message = 'No lists found';
+                        $scope.messageArchieve = 'No lists in archieve';
                     }
                 })
                 .catch(function(e) {
@@ -111,7 +112,10 @@
                         $scope.archieve = $scope.archieve.filter(function(item) {
                             return item._id !== data._id;
                         })
-                        console.log(`updated`);
+                        if(!$scope.archieve.length) {
+                            $injector.get('$route').reload();
+                        }
+                        toastr.success(`List ${list.title} has been sent to all lists page`);
                     }).catch(function(e) {
                         console.log(e);
                     })
@@ -126,6 +130,7 @@
                 listService.getAllLists(null, userId).$promise
                     .then(function(data) {
                         if (data.length) {
+                            $scope.message = '';
                             $scope.lists = data;
                         } else {
                             $scope.message = 'No lists found';
@@ -137,6 +142,7 @@
                 listService.getAllLists($routeParams.id, userId).$promise
                     .then(function(data) {
                         if (data.length) {
+                            $scope.message = '';
                             $scope.lists = data;
                         } else {
                             $scope.message = 'No lists found';
