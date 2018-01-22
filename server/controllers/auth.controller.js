@@ -11,7 +11,8 @@ module.exports = function(req, res) {
             if (user) {
                 user.comparePassword(req.body.password, function(err, result) {
                     if (result && !err) {
-                        var token = jwt.encode({exp: Math.round(date), username: user.username}, config.secretKey);
+                        var jwt_payload = {exp: Math.round(date), username: user.username, id: user._id};
+                        var token = jwt.encode(jwt_payload, config.secretKey);
                         res.json({
                             user: {
                                 username: user.username,
@@ -26,7 +27,7 @@ module.exports = function(req, res) {
 
             } else {
                 users.create(req.body).then(function(user) {
-                    var token = jwt.encode({exp: Math.round(date), username: user.username}, config.secretKey);
+                    var token = jwt.encode({exp: Math.round(date), username: user.username, id: user._id}, config.secretKey);
                     res.json({
                         user: {
                             username: user.username,
