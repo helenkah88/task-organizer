@@ -31,7 +31,7 @@
                 </div>
             </div>
             <button type="submit" class="btn btn-primary" ng-disabled="loginForm.$invalid">Submit</button>
-            <div class="text-danger">{{errorMsg}}</div>
+            <div class="alert alert-danger mt-2" ng-show="errorMsg">{{errorMsg}}</div>
         </form>
     </div>
     <div class="greeting" ng-if="currentUser.getToken()">

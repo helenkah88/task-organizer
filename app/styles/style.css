@@ -306,7 +306,7 @@ ul.nav a:hover {
         width: 50%;
     }
     .nav-toggle {
-        display: block;
+        display: block !important;
 
         transition: all .2s ease-in-out;
     }

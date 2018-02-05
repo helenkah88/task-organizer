@@ -6,11 +6,6 @@
             $scope.user = {};
             $scope.currentUser = currentUserService;
             $scope.errorMsg = '';
-            $scope.menuOpen = true;
-
-            $scope.toggleMenu = function() {
-                $scope.menuOpen = !$scope.menuOpen;
-            }
 
             $scope.login = function(form) {
                 if (!form.$valid) return;

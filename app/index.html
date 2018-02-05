@@ -46,9 +46,9 @@
 <body ng-controller="AuthCtrl" background>
     <nav ng-show="currentUser.getToken()">
         <button class="btn btn-primary ml-3 ml-lg-0" ng-click="logout()">Log out</button>
-        <div class="navbar-icon text-light float-right mr-3" onclick="$('.nav-toggle').slideToggle();"><i class="material-icons">menu</i></div>
-        <div ng-show="menuOpen" class="nav-toggle">
-            <ul class="nav" ng-click="toggleMenu()">
+        <div class="navbar-icon text-light float-right mr-3" onclick="$('.nav-toggle').slideToggle()"><i class="material-icons">menu</i></div>
+        <div class="nav-toggle">
+            <ul class="nav" onclick="$('.nav-toggle').slideToggle()">
                 <li><a href="/#!/">main</a></li>
                 <li><a href="/#!/lists/new-list">new list</a></li>
                 <li><a href="/#!/0/lists">all lists</a></li>
